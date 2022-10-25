@@ -1,0 +1,15 @@
+rule all:
+    input:
+        expand("resultsa/{sample}.fastq", sample=config["samples"])
+        
+rule fastp:
+	input: 
+		sample="samplesa/{sample}.fastq"
+	output:
+		sample_filtered="resultsa/{sample}.fastq"   
+	shell: 
+		"fastp -i {input.sample} -o {output.sample_filtered}"
+        
+        
+        
+       
